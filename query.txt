@@ -1,0 +1,180 @@
+const users = await prisma.user.findMany({
+  where: {
+    name: null,
+  },
+})
+
+const users = await prisma.user.findMany()
+
+
+const user = await prisma.user.findFirst()
+
+updateUser: (parent, args, ctx: Context) => {
+  return ctx.prisma.user.update({
+    where: { id: Number(args.id) },
+    data: {
+      email: args.authorEmail, // email cannot be null
+      name: args.authorName // name set to null - potentially unwanted behavior
+    },
+  })
+},
+
+updateUser: (parent, args, ctx: Context) => {
+  return ctx.prisma.user.update({
+    where: { id: Number(args.id) },
+    data: {
+      email: args.authorEmail != null ? args.authorEmail : undefined, // If null, do nothing
+      name: args.authorName != null ? args.authorName : undefined // If null, do nothing
+    },
+  })
+},
+
+
+
+const users = await prisma.user.findMany({
+  where: {
+    OR: [
+      {
+        email: {
+          contains: formData.email,
+        },
+      },
+    ],
+  },
+})
+
+
+const users = await prisma.user.findMany({
+  where: {
+    NOT: [
+      {
+        email: {
+          contains: formData.email,
+        },
+      },
+    ],
+  },
+})
+
+const createdUser = await prisma.user.create({
+  data: {
+    email: 'eloise@prisma.io',
+    coinflips: [true, true, true, false, true],
+  },
+})
+
+
+
+
+const user = await prisma.user.findUnique({
+  where: {
+    email: 'eloise@prisma.io',
+  },
+})
+
+if (user) {
+  console.log(user.coinflips)
+
+  user.coinflips.push(true, true, false)
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      email: 'eloise@prisma.io',
+    },
+    data: {
+      coinflips: user.coinflips,
+    },
+  })
+
+  console.log(updatedUser.coinflips)
+}
+
+const posts = await prisma.post.findMany({
+  where: {
+    tags: {
+      hasEvery: ['databases', 'typescript'],
+    },
+  },
+})
+
+const like = await prisma.like.findUnique({
+  where: {
+    likeId: {
+      userId: 1,
+      postId: 1,
+    },
+  },
+})
+
+const like = await prisma.like.delete({
+  where: {
+    likeId: {
+      userId: 1,
+      postId: 1,
+    },
+  },
+})
+
+const like = await prisma.like.update({
+  where: {
+    likeId: {
+      userId: 1,
+      postId: 1,
+    },
+  },
+  data: {
+    postId: 2,
+  },
+})
+
+await prisma.like.upsert({
+  where: {
+    likeId: {
+      userId: 1,
+      postId: 1,
+    },
+  },
+  update: {
+    userId: 2,
+  },
+  create: {
+    userId: 2,
+    postId: 1,
+  },
+})
+
+
+onst prisma = new PrismaClient().$extends({
+  model: {
+    user: {
+      async signUp(email: string) {
+        await prisma.user.create({ data: { email } })
+      },
+    },
+  },
+})
+
+ const users = await prisma.user.findMany({
+      select: {
+        username: true,
+        email: true,
+      },
+    });
+
+
+
+
+    // export async function GET(request) {}
+ 
+// export async function HEAD(request) {}
+ 
+// export async function POST(request) {}
+ 
+// export async function PUT(request) {}
+ 
+// export async function DELETE(request) {}
+ 
+// export async function PATCH(request) {}
+ 
+// // If `OPTIONS` is not defined, Next.js will automatically implement `OPTIONS` and  set the appropriate Response `Allow` header depending on the other methods defined in the route handler.
+// export async function OPTIONS(request) {}
