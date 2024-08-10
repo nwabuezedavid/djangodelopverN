@@ -47,6 +47,7 @@ export async function uploadingFile(request) {
 
     }
   }
+// Handle both HTTP and HTTPS
 
   try {
     const uniqueSuffix = `${Date.now()}_${Math.round(Math.random() * 1e9)}`;
@@ -56,8 +57,8 @@ export async function uploadingFile(request) {
     const filename = `${sanitizedFilename}_${uniqueSuffix}${fileExtension}`;
     await writeFile(`${uploadDir}/${filename}`, buffer);
     
-    const finalFilePath = 'https://djangodelopver-pp9wraw0d-davidnwabueze333gmailcoms-projects.vercel.app/images/' + `${relativeUploadDir}/${filename}`;
-    // const finalFilePath = 'http://localhost:3000/images/' + `${relativeUploadDir}/${filename}`;
+    // const finalFilePath = `${host}'` + `${relativeUploadDir}/${filename}`;
+    const finalFilePath = 'https://djangodelopver-n.vercel.app/images/'  + `${relativeUploadDir}/${filename}`;
     console.log('filename : ' + finalFilePath);
     
     return finalFilePath  
