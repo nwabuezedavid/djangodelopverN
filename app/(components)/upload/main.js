@@ -47,6 +47,8 @@ const Main = () => {
         
       
       const filsd = file.current.files[0]
+
+
       const data = new FormData()
       data.append('file',filsd)
       await uploadingFile(data) 
