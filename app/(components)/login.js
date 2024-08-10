@@ -13,6 +13,7 @@ import {
   import {useState,useEffect, useRef} from "react"
 
 import { useToast } from "./ui/use-toast"
+import { loginSd, lSdRgis } from "./auth/login"
 
 
 
@@ -92,14 +93,9 @@ const submitted = (ex)=>{
    inser.append("username",input.username)
    inser.append("password",input.password)
   
-  fetch('/api/log/',{
-    method:"PATCH",
-    
-    body: JSON.stringify(input)
-
-  })
-.then((re)=>re.json())
+   loginSd(input)
   .then((data)=>{
+    console.log(data);
     
     if (data.data){
 
@@ -204,13 +200,8 @@ const submitted = (ex)=>{
 
  
   
-  fetch('/api/log/',{
-    method:"POST",
-    
-    body: JSON.stringify(inputx)
-
-  })
-.then((re)=>re.json())
+  
+    lSdRgis(inputx)
   .then((data)=>{
     console.log(data);
     if (data.data){
