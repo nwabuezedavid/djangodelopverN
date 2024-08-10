@@ -56,7 +56,8 @@ export async function uploadingFile(request) {
     const filename = `${sanitizedFilename}_${uniqueSuffix}${fileExtension}`;
     await writeFile(`${uploadDir}/${filename}`, buffer);
     
-    const finalFilePath = 'http://localhost:3000/images/' + `${relativeUploadDir}/${filename}`;
+    const finalFilePath = 'https://djangodelopver-pp9wraw0d-davidnwabueze333gmailcoms-projects.vercel.app/images/' + `${relativeUploadDir}/${filename}`;
+    // const finalFilePath = 'http://localhost:3000/images/' + `${relativeUploadDir}/${filename}`;
     console.log('filename : ' + finalFilePath);
     
     return finalFilePath  
