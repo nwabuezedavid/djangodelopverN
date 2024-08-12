@@ -33,7 +33,7 @@ const Main = () => {
     const file = useRef()
     const setdataform =(e)=>{
         const {name, value} = e.target
-        
+        console.log("sasdas",datax);
         setdata((e)=> {
 
           return {...e,[name]:value}
@@ -45,10 +45,18 @@ const Main = () => {
         console.log(filsd.size <= 104857600)
         if (filsd.size <= 104857600){
         
-      
+      // const f = new FileReader();
+      // f.readAsDataURL(file.current.files[0]);
+      // f.addEventListener('load',()=>{
+      //     const url = f.result
+      //     console.log(url.startsWith('data:video/mp4'))
+      //     setdata((e)=> {
+
+      //       return {...e,[name]:file}
+
+      //     })
+      // })
       const filsd = file.current.files[0]
-
-
       const data = new FormData()
       data.append('file',filsd)
       await uploadingFile(data) 
